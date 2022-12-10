@@ -8,9 +8,11 @@
     "preview": "vite preview --port 5050",
     "test:unit": "vitest --environment jsdom",
     "typecheck": "vue-tsc --noEmit -p tsconfig.vitest.json --composite false",
+    "openapi-gen": "openapi --input http://localhost:8000/openapi.json --output ./src/client --client axios",
     "lint": "eslint . --ext .vue,.js,.jsx,.cjs,.mjs,.ts,.tsx,.cts,.mts --fix --ignore-path .gitignore"
   },
   "dependencies": {
+    "openapi-typescript-codegen": "^0.23.0",
     "pinia": "^2.0.11",
     "ts-proto": "^1.135.2",
     "vue": "^3.2.31",

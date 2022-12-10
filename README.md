@@ -51,6 +51,9 @@ $ set -a && source *.env; set +a
 # Setup Database
 $ alembic upgrade head
 
+# Auto generate api definitions for frontend
+$ pnpm run openapi-gen
+
 # Run development server for frontend / backend
 $ pnpm run dev & uvicorn main:app --reload
 ```

@@ -1,4 +1,5 @@
 from fastapi import FastAPI
+from fastapi.routing import APIRoute
 from rich import print
 
 from models.base import Base
@@ -15,8 +16,16 @@ def create_db():
     Base.metadata.create_all(bind=engine)
 
 
+def custom_generate_unique_id(route: APIRoute):
+    return f"{route.tags[0]}-{route.name}"
+
+
 def start_application():
-    app = FastAPI(title=settings.PROJECT_TITLE, version=settings.PROJECT_VERSION)
+    app = FastAPI(
+        title=settings.PROJECT_TITLE,
+        version=settings.PROJECT_VERSION,
+        generate_unique_id_function=custom_generate_unique_id
+    )
     include_router(app)
     create_db()
     return app
