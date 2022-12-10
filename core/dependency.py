@@ -1,4 +1,4 @@
-from fastapi import Security, Depends, HTTPException
+from fastapi import Security, Depends, HTTPException, status
 from fastapi.security import HTTPAuthorizationCredentials, HTTPBearer
 from sqlalchemy.orm import Session
 
@@ -23,13 +23,13 @@ def get_user(credentials: HTTPAuthorizationCredentials = Security(security), db:
     email = auth.decode_token(token)
     user = db.query(User).filter(User.email == email).first()
     if not user:
-        raise HTTPException(401, "User doesn't exist")
+        raise HTTPException(status.HTTP_401_UNAUTHORIZED, "User doesn't exist")
     return user
 
 
 def get_active_user(current_user: UserOut = Depends(get_user)):
     if not current_user.email_verified:
-        raise HTTPException(401, "Email isn't verified!")
+        raise HTTPException(status.HTTP_401_UNAUTHORIZED, "Email isn't verified!")
     if not current_user.is_active:
-        raise HTTPException(401, "This account is inactive!")
+        raise HTTPException(status.HTTP_401_UNAUTHORIZED, "This account is inactive!")
     return current_user
