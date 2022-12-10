@@ -9,6 +9,7 @@ class User(Base):
 
     id: Column | int = Column(Integer, primary_key=True, index=True)
     email: Column | EmailStr = Column(String, nullable=False, unique=True, index=True)
+    username = Column(String, nullable=False)
     password: Column | str = Column(String, nullable=False)
     email_verified: Column | bool = Column(Boolean, default=False)
     is_active: Column | bool = Column(Boolean, default=False)
