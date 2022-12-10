@@ -1,11 +1,15 @@
 import os
 import re
 from pathlib import Path
+from rich import print
 from pydantic import BaseModel
 
 
 def load_envstr(key: str, default: str | None = None):
-    var = os.environ.get(key, default)
+    var = os.environ.get(key)
+    if var is None:
+        print(f'[yellow]WARNING[/] {key} not found. Using default: {default}')
+        var = default
     assert isinstance(var, str) and len(var) > 0, f'{key}={var}: Should be str with length > 0'
     return var
 
@@ -66,7 +70,7 @@ class Settings(BaseModel):
 settings = Settings()
 
 if settings.is_dev:
-    settings.DATABASE_URL = 'sqlite:///:memory:'
+    settings.DATABASE_URL = 'sqlite:///tmp_sample_db.sqlite3'
 
 if __name__ == '__main__':
     from rich import print
