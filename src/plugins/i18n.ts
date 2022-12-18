@@ -4,7 +4,7 @@ import { useLocalStorage } from '@vueuse/core'
 
 const localPathPrefix = '../locales/'
 
-const storage = useLocalStorage('otg-options', {}) as any
+const storage = useLocalStorage('otg-options', {}) as any // eslint-disable-line @typescript-eslint/no-explicit-any
 const locale = storage.value?.apperance?.language
 
 // import i18n resources

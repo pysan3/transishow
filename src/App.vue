@@ -1,42 +1,21 @@
 <template>
   <header>
-    <img
-      alt="Vue logo"
-      class="block mx-auto mt-0 mb-8 lg:mr-8"
-      src="@/assets/logo.svg"
-      width="125"
-      height="125"
-    />
+    <img alt="Vue logo" class="block mx-auto mt-0 mb-8 lg:mr-8" src="@/assets/logo.svg" width="125" height="125" />
     <div class="wrapper" lg="flex place-items-center flex-wrap">
       <HelloWorld :msg="$t('hello', { name: 'A better Vue 3 Starter' })" />
-      <nav
-        class="w-full text-xs text-center mt-8"
-        lg="text-left text-base py-4 px-0 mt-4 -ml-4"
-      >
+      <nav class="w-full text-xs text-center mt-8" lg="text-left text-base py-4 px-0 mt-4 -ml-4">
         <RouterLink to="/">{{ $t('menu.home') }}</RouterLink>
         <RouterLink to="/about">About</RouterLink>
       </nav>
       <div class="w-full text-center mt-8 space-x-4" lg="text-left">
-        <button
-          border="~ [var(--color-border)]"
-          class="p-2 rounded-md"
-          @click="(e) => toggleDark()"
-        >
+        <button border="~ [var(--color-border)]" class="p-2 rounded-md" @click="(e) => toggleDark()">
           <carbon:moon class="w-6 h-6" v-if="isDark" />
           <carbon:sun class="w-6 h-6" v-else />
         </button>
-        <button
-          border="~ [var(--color-border)]"
-          class="p-2 rounded-md"
-          @click="toggleLocales"
-        >
+        <button border="~ [var(--color-border)]" class="p-2 rounded-md" @click="toggleLocales">
           <carbon:language class="w-6 h-6" />
         </button>
-        <button
-          border="~ [var(--color-border)]"
-          class="p-2 rounded-md"
-          @click="gotoGitHub"
-        >
+        <button border="~ [var(--color-border)]" class="p-2 rounded-md" @click="gotoGitHub">
           <carbon:logo-github class="w-6 h-6" />
         </button>
       </div>
